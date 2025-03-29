@@ -1,0 +1,158 @@
+import json
+import boto3
+import os
+import io
+import time
+from PIL import Image
+
+rekognition = boto3.client('rekognition')
+s3_client = boto3.client('s3')
+
+def lambda_handler(event, context):
+    DEST_BUCKET = "lupa-people"
+    COLLECTION_ID = "lupa-test"
+    source_bucket = "lupa-enter"
+    print("Event:" + DEST_BUCKET + " " + COLLECTION_ID + " " + source_bucket)
+    print("Event:" + json.dumps(event))
+    
+    for record in event['Records']:
+        image_key = record['s3']['object']['key']
+        response = s3_client.get_object(Bucket=source_bucket, Key=image_key)
+        image_bytes = response['Body'].read()
+        
+        try:
+            img = Image.open(io.BytesIO(image_bytes))
+            if img.format not in ['JPEG', 'JPG', 'PNG']:
+                buffer = io.BytesIO()
+                img.convert("RGB").save(buffer, format="JPEG")
+                image_bytes = buffer.getvalue()
+                img = Image.open(io.BytesIO(image_bytes))
+        except Exception as e:
+            print(f"Error processing image {image_key}: {e}")
+            continue
+        
+        try:
+            detect_response = rekognition.detect_faces(
+                Image={'Bytes': image_bytes},
+                Attributes=['DEFAULT']
+            )
+            faces = detect_response.get('FaceDetails', [])
+        except Exception as e:
+            print("Error during detect_faces:", e)
+            faces = []
+        
+        people = []
+        width, height = img.size
+        
+        for idx, face in enumerate(faces):
+            bbox = face.get('BoundingBox', {})
+            left = int(bbox.get('Left', 0) * width)
+            top = int(bbox.get('Top', 0) * height)
+            box_width = int(bbox.get('Width', 0) * width)
+            box_height = int(bbox.get('Height', 0) * height)
+            
+            cropped_face = img.crop((left, top, left + box_width, top + box_height))
+            
+            cropped_buffer = io.BytesIO()
+            cropped_face.convert("RGB").save(cropped_buffer, format="JPEG")
+            cropped_bytes = cropped_buffer.getvalue()
+            
+            try:
+                search_response = rekognition.search_faces_by_image(
+                    CollectionId=COLLECTION_ID,
+                    Image={'Bytes': cropped_bytes},
+                    FaceMatchThreshold=90,
+                    MaxFaces=1
+                )
+                face_matches = search_response.get('FaceMatches', [])
+            except Exception as e:
+                print("Error during search_faces_by_image:", e)
+                face_matches = []
+            
+            if face_matches:
+                face_id = face_matches[0]['Face']['FaceId']
+                status = "known face"
+            else:
+                try:
+                    index_response = rekognition.index_faces(
+                        CollectionId=COLLECTION_ID,
+                        Image={'Bytes': cropped_bytes},
+                        ExternalImageId=f"{image_key}_{idx}",
+                        DetectionAttributes=['DEFAULT']
+                    )
+                    if index_response['FaceRecords']:
+                        face_id = index_response['FaceRecords'][0]['Face']['FaceId']
+                        status = "new face added"
+                    else:
+                        face_id = None
+                        status = "no face detected"
+                except Exception as e:
+                    face_id = None
+                    status = f"error indexing face: {str(e)}"
+            
+            face_image_key = None
+            if face_id:
+                timestamp = int(round(time.time() * 1000))
+                face_folder = f"faces/{face_id}/"
+                face_filename = f"{face_id}_{timestamp}.jpg"
+                face_image_key = f"{face_folder}{face_filename}"
+                
+                # Upload the cropped face image with timestamp in filename
+                s3_client.put_object(
+                    Bucket=DEST_BUCKET,
+                    Key=face_image_key,
+                    Body=cropped_bytes,
+                    ContentType="image/jpeg"
+                )
+                
+                # Update or create the profile.json for this face
+                profile_key = f"{face_folder}profile.json"
+                try:
+                    profile_obj = s3_client.get_object(Bucket=DEST_BUCKET, Key=profile_key)
+                    profile_data = json.loads(profile_obj['Body'].read())
+                except Exception as e:
+                    profile_data = {"face_id": face_id, "images": []}
+                
+                # Append new image record with timestamp
+                profile_data["images"].append({
+                    "image_key": face_image_key,
+                    "timestamp": timestamp
+                })
+                
+                s3_client.put_object(
+                    Bucket=DEST_BUCKET,
+                    Key=profile_key,
+                    Body=json.dumps(profile_data),
+                    ContentType="application/json"
+                )
+            
+            people.append({
+                "face_id": face_id,
+                "bounding_box": {
+                    "Left": left,
+                    "Top": top,
+                    "Width": box_width,
+                    "Height": box_height
+                },
+                "status": status,
+                "saved_face_image_key": face_image_key
+            })
+        
+        # Create the final result JSON with a list of people ids and bounding boxes
+        result_data = {
+            "original_image_key": image_key,
+            "people": people
+        }
+        
+        result_key = f"results/{os.path.splitext(os.path.basename(image_key))[0]}.json"
+        s3_client.put_object(
+            Bucket=DEST_BUCKET,
+            Key=result_key,
+            Body=json.dumps(result_data),
+            ContentType="application/json"
+        )
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Processing complete.')
+    }
