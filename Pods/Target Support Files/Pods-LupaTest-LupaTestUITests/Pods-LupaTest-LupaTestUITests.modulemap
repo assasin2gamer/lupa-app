@@ -1,6 +1,0 @@
-framework module Pods_LupaTest_LupaTestUITests {
-  umbrella header "Pods-LupaTest-LupaTestUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

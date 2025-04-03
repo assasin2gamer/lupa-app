@@ -30,6 +30,34 @@
                ReferencedContainer = "container:LupaTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FC2781BF2D859FB900C013CE"
+               BuildableName = "LupaTestUITests.xctest"
+               BlueprintName = "LupaTestUITests"
+               ReferencedContainer = "container:LupaTest.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FC2781B52D859FB900C013CE"
+               BuildableName = "LupaTestTests.xctest"
+               BlueprintName = "LupaTestTests"
+               ReferencedContainer = "container:LupaTest.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

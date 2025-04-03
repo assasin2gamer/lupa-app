@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 14aeb3a0004b56270ebaf7bcaa6de0145eeda9f5
+PODS:
+  - SFaceCompare (3.1.1)
+
+DEPENDENCIES:
+  - SFaceCompare
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SFaceCompare
+
+SPEC CHECKSUMS:
+  SFaceCompare: 10e02b0c39d1d3c4e1af45ae3df6515dd6bc718e
+
+PODFILE CHECKSUM: d383b7b91beed37cce72461c739ee404b5d5ca88
 
 COCOAPODS: 1.16.2

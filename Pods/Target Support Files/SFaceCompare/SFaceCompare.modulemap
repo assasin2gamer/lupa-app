@@ -1,0 +1,6 @@
+framework module SFaceCompare {
+  umbrella header "SFaceCompare-umbrella.h"
+
+  export *
+  module * { export * }
+}

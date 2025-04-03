@@ -4,6 +4,7 @@ import AVFoundation
 import Vision
 import CoreImage
 import CoreLocation
+import SFaceCompare
 
 extension UIImage {
     func fixedOrientation() -> UIImage? {
@@ -36,7 +37,7 @@ class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSampleBuf
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-    
+
     func configure() {
         session.beginConfiguration()
         session.sessionPreset = .photo

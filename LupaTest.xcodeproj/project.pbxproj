@@ -7,36 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E206FACFD3EA0F4876B9FD0 /* Pods_LupaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2852863DB53ADE516FC39343 /* Pods_LupaTest.framework */; };
-		6AB6E6F3A2CCEA0403D60DC4 /* Pods_LupaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD0F99B00BAECFBA5B26E5E /* Pods_LupaTestTests.framework */; };
-		D4B886E1FFEB996428834624 /* Pods_LupaTest_LupaTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6AA646C046242D6E313653 /* Pods_LupaTest_LupaTestUITests.framework */; };
+		FCF5B1C02D9EF28800C40662 /* Pods_LupaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF5B1B92D9EF26C00C40662 /* Pods_LupaTest.framework */; };
+		FCF5B1C12D9EF28800C40662 /* Pods_LupaTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCF5B1B92D9EF26C00C40662 /* Pods_LupaTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FC2781B72D859FB900C013CE /* PBXContainerItemProxy */ = {
+		FCF5B1B82D9EF26C00C40662 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FC2781982D859FB700C013CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FC27819F2D859FB700C013CE;
-			remoteInfo = LupaTest;
-		};
-		FC2781C12D859FB900C013CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FC2781982D859FB700C013CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FC27819F2D859FB700C013CE;
-			remoteInfo = LupaTest;
+			containerPortal = FCF5B1002D9EEFF600C40662 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B108005484058467AFFE83B081466DEC;
+			remoteInfo = "Pods-LupaTest";
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FCF5B1C22D9EF28800C40662 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FCF5B1C12D9EF28800C40662 /* Pods_LupaTest.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		0D6AA646C046242D6E313653 /* Pods_LupaTest_LupaTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LupaTest_LupaTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2852863DB53ADE516FC39343 /* Pods_LupaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LupaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		526027BB97D03324ACF23DE0 /* Pods-LupaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LupaTest.release.xcconfig"; path = "Target Support Files/Pods-LupaTest/Pods-LupaTest.release.xcconfig"; sourceTree = "<group>"; };
+		56E73848E7ECEB61F0107ED3 /* Pods-LupaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LupaTestTests.release.xcconfig"; path = "Target Support Files/Pods-LupaTestTests/Pods-LupaTestTests.release.xcconfig"; sourceTree = "<group>"; };
+		79CA090E85174EE2A8CF80FD /* Pods_LupaTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LupaTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E43C38E1E251C336D5EA917 /* Pods-LupaTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LupaTestTests.debug.xcconfig"; path = "Target Support Files/Pods-LupaTestTests/Pods-LupaTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8BD0F99B00BAECFBA5B26E5E /* Pods_LupaTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LupaTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		934D0305CEEB911AE6F0D3C6 /* Pods-LupaTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LupaTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LupaTestUITests/Pods-LupaTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B542CDEA21E686B87512191C /* Pods-LupaTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LupaTestUITests.release.xcconfig"; path = "Target Support Files/Pods-LupaTestUITests/Pods-LupaTestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E2D96C3F94E2EFB34A6CB4F1 /* Pods-LupaTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LupaTest.debug.xcconfig"; path = "Target Support Files/Pods-LupaTest/Pods-LupaTest.debug.xcconfig"; sourceTree = "<group>"; };
 		FC2781A02D859FB700C013CE /* LupaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LupaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC2781B62D859FB900C013CE /* LupaTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LupaTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC2781C02D859FB900C013CE /* LupaTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LupaTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF5AF5D2D9EEDDE00C40662 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		FCF5B0C22D9EEFF600C40662 /* CIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+.swift"; sourceTree = "<group>"; };
+		FCF5B0C32D9EEFF600C40662 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		FCF5B0C42D9EEFF600C40662 /* Formatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+.swift"; sourceTree = "<group>"; };
+		FCF5B0C52D9EEFF600C40662 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		FCF5B0C72D9EEFF600C40662 /* DetectionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionResult.swift; sourceTree = "<group>"; };
+		FCF5B0C82D9EEFF600C40662 /* FaceDetectionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionOperation.swift; sourceTree = "<group>"; };
+		FCF5B0CA2D9EEFF600C40662 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		FCF5B0CB2D9EEFF600C40662 /* SFaceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFaceError.swift; sourceTree = "<group>"; };
+		FCF5B0CD2D9EEFF600C40662 /* CompareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareData.swift; sourceTree = "<group>"; };
+		FCF5B0CE2D9EEFF600C40662 /* Faces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Faces.mlmodel; sourceTree = "<group>"; };
+		FCF5B0CF2D9EEFF600C40662 /* SFaceCompare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFaceCompare.swift; sourceTree = "<group>"; };
+		FCF5B0D12D9EEFF600C40662 /* SameFace.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SameFace.framework; sourceTree = "<group>"; };
+		FCF5B0D32D9EEFF600C40662 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		FCF5B0D42D9EEFF600C40662 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FCF5B0D62D9EEFF600C40662 /* Pods-LupaTest.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LupaTest.modulemap"; sourceTree = "<group>"; };
+		FCF5B0D72D9EEFF600C40662 /* Pods-LupaTest-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-LupaTest-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FCF5B0D82D9EEFF600C40662 /* Pods-LupaTest-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-LupaTest-acknowledgements.plist"; sourceTree = "<group>"; };
+		FCF5B0D92D9EEFF600C40662 /* Pods-LupaTest-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-LupaTest-dummy.m"; sourceTree = "<group>"; };
+		FCF5B0DA2D9EEFF600C40662 /* Pods-LupaTest-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Pods-LupaTest-frameworks.sh"; sourceTree = "<group>"; };
+		FCF5B0DB2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Debug-input-files.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = "Pods-LupaTest-frameworks-Debug-input-files.xcfilelist"; sourceTree = "<group>"; };
+		FCF5B0DC2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Debug-output-files.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = "Pods-LupaTest-frameworks-Debug-output-files.xcfilelist"; sourceTree = "<group>"; };
+		FCF5B0DD2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Release-input-files.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = "Pods-LupaTest-frameworks-Release-input-files.xcfilelist"; sourceTree = "<group>"; };
+		FCF5B0DE2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Release-output-files.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = "Pods-LupaTest-frameworks-Release-output-files.xcfilelist"; sourceTree = "<group>"; };
+		FCF5B0DF2D9EEFF600C40662 /* Pods-LupaTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-LupaTest-Info.plist"; sourceTree = "<group>"; };
+		FCF5B0E02D9EEFF600C40662 /* Pods-LupaTest-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pods-LupaTest-umbrella.h"; sourceTree = "<group>"; };
+		FCF5B0E12D9EEFF600C40662 /* Pods-LupaTest.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-LupaTest.debug.xcconfig"; sourceTree = "<group>"; };
+		FCF5B0E22D9EEFF600C40662 /* Pods-LupaTest.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-LupaTest.release.xcconfig"; sourceTree = "<group>"; };
+		FCF5B0E42D9EEFF600C40662 /* Pods-LupaTestTests.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LupaTestTests.modulemap"; sourceTree = "<group>"; };
+		FCF5B0E52D9EEFF600C40662 /* Pods-LupaTestTests-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-LupaTestTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FCF5B0E62D9EEFF600C40662 /* Pods-LupaTestTests-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-LupaTestTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		FCF5B0E72D9EEFF600C40662 /* Pods-LupaTestTests-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-LupaTestTests-dummy.m"; sourceTree = "<group>"; };
+		FCF5B0E82D9EEFF600C40662 /* Pods-LupaTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-LupaTestTests-Info.plist"; sourceTree = "<group>"; };
+		FCF5B0E92D9EEFF600C40662 /* Pods-LupaTestTests-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pods-LupaTestTests-umbrella.h"; sourceTree = "<group>"; };
+		FCF5B0EA2D9EEFF600C40662 /* Pods-LupaTestTests.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-LupaTestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FCF5B0EB2D9EEFF600C40662 /* Pods-LupaTestTests.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-LupaTestTests.release.xcconfig"; sourceTree = "<group>"; };
+		FCF5B0ED2D9EEFF600C40662 /* Pods-LupaTestUITests.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LupaTestUITests.modulemap"; sourceTree = "<group>"; };
+		FCF5B0EE2D9EEFF600C40662 /* Pods-LupaTestUITests-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-LupaTestUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FCF5B0EF2D9EEFF600C40662 /* Pods-LupaTestUITests-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-LupaTestUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		FCF5B0F02D9EEFF600C40662 /* Pods-LupaTestUITests-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-LupaTestUITests-dummy.m"; sourceTree = "<group>"; };
+		FCF5B0F12D9EEFF600C40662 /* Pods-LupaTestUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-LupaTestUITests-Info.plist"; sourceTree = "<group>"; };
+		FCF5B0F22D9EEFF600C40662 /* Pods-LupaTestUITests-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pods-LupaTestUITests-umbrella.h"; sourceTree = "<group>"; };
+		FCF5B0F32D9EEFF600C40662 /* Pods-LupaTestUITests.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-LupaTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FCF5B0F42D9EEFF600C40662 /* Pods-LupaTestUITests.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-LupaTestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FCF5B0F62D9EEFF600C40662 /* SFaceCompare.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = SFaceCompare.modulemap; sourceTree = "<group>"; };
+		FCF5B0F72D9EEFF600C40662 /* SFaceCompare-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SFaceCompare-dummy.m"; sourceTree = "<group>"; };
+		FCF5B0F82D9EEFF600C40662 /* SFaceCompare-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SFaceCompare-Info.plist"; sourceTree = "<group>"; };
+		FCF5B0F92D9EEFF600C40662 /* SFaceCompare-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SFaceCompare-prefix.pch"; sourceTree = "<group>"; };
+		FCF5B0FA2D9EEFF600C40662 /* SFaceCompare-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SFaceCompare-umbrella.h"; sourceTree = "<group>"; };
+		FCF5B0FB2D9EEFF600C40662 /* SFaceCompare.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SFaceCompare.debug.xcconfig; sourceTree = "<group>"; };
+		FCF5B0FC2D9EEFF600C40662 /* SFaceCompare.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SFaceCompare.release.xcconfig; sourceTree = "<group>"; };
+		FCF5B0FF2D9EEFF600C40662 /* Manifest.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Manifest.lock; sourceTree = "<group>"; };
+		FCF5B1002D9EEFF600C40662 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -75,23 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E206FACFD3EA0F4876B9FD0 /* Pods_LupaTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC2781B32D859FB900C013CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6AB6E6F3A2CCEA0403D60DC4 /* Pods_LupaTestTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC2781BD2D859FB900C013CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4B886E1FFEB996428834624 /* Pods_LupaTest_LupaTestUITests.framework in Frameworks */,
+				FCF5B1C02D9EF28800C40662 /* Pods_LupaTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,11 +147,25 @@
 		0F0A359E508347DC7A70736C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCF5B1012D9EEFF600C40662 /* Pods */,
 				2852863DB53ADE516FC39343 /* Pods_LupaTest.framework */,
-				0D6AA646C046242D6E313653 /* Pods_LupaTest_LupaTestUITests.framework */,
 				8BD0F99B00BAECFBA5B26E5E /* Pods_LupaTestTests.framework */,
+				79CA090E85174EE2A8CF80FD /* Pods_LupaTestUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB33EF577FF6231CC52A5DC4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2D96C3F94E2EFB34A6CB4F1 /* Pods-LupaTest.debug.xcconfig */,
+				526027BB97D03324ACF23DE0 /* Pods-LupaTest.release.xcconfig */,
+				7E43C38E1E251C336D5EA917 /* Pods-LupaTestTests.debug.xcconfig */,
+				56E73848E7ECEB61F0107ED3 /* Pods-LupaTestTests.release.xcconfig */,
+				934D0305CEEB911AE6F0D3C6 /* Pods-LupaTestUITests.debug.xcconfig */,
+				B542CDEA21E686B87512191C /* Pods-LupaTestUITests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		FC2781972D859FB700C013CE = {
@@ -117,6 +177,7 @@
 				FC2781C32D859FB900C013CE /* LupaTestUITests */,
 				FC2781A12D859FB700C013CE /* Products */,
 				0F0A359E508347DC7A70736C /* Frameworks */,
+				FB33EF577FF6231CC52A5DC4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,8 +185,177 @@
 			isa = PBXGroup;
 			children = (
 				FC2781A02D859FB700C013CE /* LupaTest.app */,
-				FC2781B62D859FB900C013CE /* LupaTestTests.xctest */,
-				FC2781C02D859FB900C013CE /* LupaTestUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FCF5B0C02D9EEFF600C40662 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		FCF5B0C12D9EEFF600C40662 /* Local Podspecs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Local Podspecs";
+			sourceTree = "<group>";
+		};
+		FCF5B0C62D9EEFF600C40662 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0C22D9EEFF600C40662 /* CIImage+.swift */,
+				FCF5B0C32D9EEFF600C40662 /* Date+.swift */,
+				FCF5B0C42D9EEFF600C40662 /* Formatter+.swift */,
+				FCF5B0C52D9EEFF600C40662 /* UIImage+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FCF5B0C92D9EEFF600C40662 /* FaceDetection */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0C72D9EEFF600C40662 /* DetectionResult.swift */,
+				FCF5B0C82D9EEFF600C40662 /* FaceDetectionOperation.swift */,
+			);
+			path = FaceDetection;
+			sourceTree = "<group>";
+		};
+		FCF5B0CC2D9EEFF600C40662 /* Logging Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0CA2D9EEFF600C40662 /* Logger.swift */,
+				FCF5B0CB2D9EEFF600C40662 /* SFaceError.swift */,
+			);
+			path = "Logging Utils";
+			sourceTree = "<group>";
+		};
+		FCF5B0D02D9EEFF600C40662 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0C62D9EEFF600C40662 /* Extensions */,
+				FCF5B0C92D9EEFF600C40662 /* FaceDetection */,
+				FCF5B0CC2D9EEFF600C40662 /* Logging Utils */,
+				FCF5B0CD2D9EEFF600C40662 /* CompareData.swift */,
+				FCF5B0CE2D9EEFF600C40662 /* Faces.mlmodel */,
+				FCF5B0CF2D9EEFF600C40662 /* SFaceCompare.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FCF5B0D22D9EEFF600C40662 /* SFaceCompare */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0D02D9EEFF600C40662 /* Classes */,
+				FCF5B0D12D9EEFF600C40662 /* SameFace.framework */,
+			);
+			path = SFaceCompare;
+			sourceTree = "<group>";
+		};
+		FCF5B0D52D9EEFF600C40662 /* SFaceCompare */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0D22D9EEFF600C40662 /* SFaceCompare */,
+				FCF5B0D32D9EEFF600C40662 /* LICENSE */,
+				FCF5B0D42D9EEFF600C40662 /* README.md */,
+			);
+			path = SFaceCompare;
+			sourceTree = "<group>";
+		};
+		FCF5B0E32D9EEFF600C40662 /* Pods-LupaTest */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0D62D9EEFF600C40662 /* Pods-LupaTest.modulemap */,
+				FCF5B0D72D9EEFF600C40662 /* Pods-LupaTest-acknowledgements.markdown */,
+				FCF5B0D82D9EEFF600C40662 /* Pods-LupaTest-acknowledgements.plist */,
+				FCF5B0D92D9EEFF600C40662 /* Pods-LupaTest-dummy.m */,
+				FCF5B0DA2D9EEFF600C40662 /* Pods-LupaTest-frameworks.sh */,
+				FCF5B0DB2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Debug-input-files.xcfilelist */,
+				FCF5B0DC2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Debug-output-files.xcfilelist */,
+				FCF5B0DD2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Release-input-files.xcfilelist */,
+				FCF5B0DE2D9EEFF600C40662 /* Pods-LupaTest-frameworks-Release-output-files.xcfilelist */,
+				FCF5B0DF2D9EEFF600C40662 /* Pods-LupaTest-Info.plist */,
+				FCF5B0E02D9EEFF600C40662 /* Pods-LupaTest-umbrella.h */,
+				FCF5B0E12D9EEFF600C40662 /* Pods-LupaTest.debug.xcconfig */,
+				FCF5B0E22D9EEFF600C40662 /* Pods-LupaTest.release.xcconfig */,
+			);
+			path = "Pods-LupaTest";
+			sourceTree = "<group>";
+		};
+		FCF5B0EC2D9EEFF600C40662 /* Pods-LupaTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0E42D9EEFF600C40662 /* Pods-LupaTestTests.modulemap */,
+				FCF5B0E52D9EEFF600C40662 /* Pods-LupaTestTests-acknowledgements.markdown */,
+				FCF5B0E62D9EEFF600C40662 /* Pods-LupaTestTests-acknowledgements.plist */,
+				FCF5B0E72D9EEFF600C40662 /* Pods-LupaTestTests-dummy.m */,
+				FCF5B0E82D9EEFF600C40662 /* Pods-LupaTestTests-Info.plist */,
+				FCF5B0E92D9EEFF600C40662 /* Pods-LupaTestTests-umbrella.h */,
+				FCF5B0EA2D9EEFF600C40662 /* Pods-LupaTestTests.debug.xcconfig */,
+				FCF5B0EB2D9EEFF600C40662 /* Pods-LupaTestTests.release.xcconfig */,
+			);
+			path = "Pods-LupaTestTests";
+			sourceTree = "<group>";
+		};
+		FCF5B0F52D9EEFF600C40662 /* Pods-LupaTestUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0ED2D9EEFF600C40662 /* Pods-LupaTestUITests.modulemap */,
+				FCF5B0EE2D9EEFF600C40662 /* Pods-LupaTestUITests-acknowledgements.markdown */,
+				FCF5B0EF2D9EEFF600C40662 /* Pods-LupaTestUITests-acknowledgements.plist */,
+				FCF5B0F02D9EEFF600C40662 /* Pods-LupaTestUITests-dummy.m */,
+				FCF5B0F12D9EEFF600C40662 /* Pods-LupaTestUITests-Info.plist */,
+				FCF5B0F22D9EEFF600C40662 /* Pods-LupaTestUITests-umbrella.h */,
+				FCF5B0F32D9EEFF600C40662 /* Pods-LupaTestUITests.debug.xcconfig */,
+				FCF5B0F42D9EEFF600C40662 /* Pods-LupaTestUITests.release.xcconfig */,
+			);
+			path = "Pods-LupaTestUITests";
+			sourceTree = "<group>";
+		};
+		FCF5B0FD2D9EEFF600C40662 /* SFaceCompare */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0F62D9EEFF600C40662 /* SFaceCompare.modulemap */,
+				FCF5B0F72D9EEFF600C40662 /* SFaceCompare-dummy.m */,
+				FCF5B0F82D9EEFF600C40662 /* SFaceCompare-Info.plist */,
+				FCF5B0F92D9EEFF600C40662 /* SFaceCompare-prefix.pch */,
+				FCF5B0FA2D9EEFF600C40662 /* SFaceCompare-umbrella.h */,
+				FCF5B0FB2D9EEFF600C40662 /* SFaceCompare.debug.xcconfig */,
+				FCF5B0FC2D9EEFF600C40662 /* SFaceCompare.release.xcconfig */,
+			);
+			path = SFaceCompare;
+			sourceTree = "<group>";
+		};
+		FCF5B0FE2D9EEFF600C40662 /* Target Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0E32D9EEFF600C40662 /* Pods-LupaTest */,
+				FCF5B0EC2D9EEFF600C40662 /* Pods-LupaTestTests */,
+				FCF5B0F52D9EEFF600C40662 /* Pods-LupaTestUITests */,
+				FCF5B0FD2D9EEFF600C40662 /* SFaceCompare */,
+			);
+			path = "Target Support Files";
+			sourceTree = "<group>";
+		};
+		FCF5B1012D9EEFF600C40662 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B0C02D9EEFF600C40662 /* Headers */,
+				FCF5B0C12D9EEFF600C40662 /* Local Podspecs */,
+				FCF5B0D52D9EEFF600C40662 /* SFaceCompare */,
+				FCF5B0FE2D9EEFF600C40662 /* Target Support Files */,
+				FCF5B0FF2D9EEFF600C40662 /* Manifest.lock */,
+				FCF5B1002D9EEFF600C40662 /* Pods.xcodeproj */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FCF5B1022D9EEFF600C40662 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5B1B92D9EF26C00C40662 /* Pods_LupaTest.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,6 +371,8 @@
 				FC27819C2D859FB700C013CE /* Sources */,
 				FC27819D2D859FB700C013CE /* Frameworks */,
 				FC27819E2D859FB700C013CE /* Resources */,
+				8DCD1EA9699A439D606053F6 /* [CP] Embed Pods Frameworks */,
+				FCF5B1C22D9EF28800C40662 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,50 +386,6 @@
 			productReference = FC2781A02D859FB700C013CE /* LupaTest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FC2781B52D859FB900C013CE /* LupaTestTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FC2781CE2D859FB900C013CE /* Build configuration list for PBXNativeTarget "LupaTestTests" */;
-			buildPhases = (
-				1195B556D874707FDABB4961 /* [CP] Check Pods Manifest.lock */,
-				FC2781B22D859FB900C013CE /* Sources */,
-				FC2781B32D859FB900C013CE /* Frameworks */,
-				FC2781B42D859FB900C013CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FC2781B82D859FB900C013CE /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				FC2781B92D859FB900C013CE /* LupaTestTests */,
-			);
-			name = LupaTestTests;
-			productName = LupaTestTests;
-			productReference = FC2781B62D859FB900C013CE /* LupaTestTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		FC2781BF2D859FB900C013CE /* LupaTestUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FC2781D12D859FB900C013CE /* Build configuration list for PBXNativeTarget "LupaTestUITests" */;
-			buildPhases = (
-				1D0844473C347A23E2F4A737 /* [CP] Check Pods Manifest.lock */,
-				FC2781BC2D859FB900C013CE /* Sources */,
-				FC2781BD2D859FB900C013CE /* Frameworks */,
-				FC2781BE2D859FB900C013CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FC2781C22D859FB900C013CE /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				FC2781C32D859FB900C013CE /* LupaTestUITests */,
-			);
-			name = LupaTestUITests;
-			productName = LupaTestUITests;
-			productReference = FC2781C02D859FB900C013CE /* LupaTestUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,14 +398,6 @@
 				TargetAttributes = {
 					FC27819F2D859FB700C013CE = {
 						CreatedOnToolsVersion = 16.2;
-					};
-					FC2781B52D859FB900C013CE = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = FC27819F2D859FB700C013CE;
-					};
-					FC2781BF2D859FB900C013CE = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = FC27819F2D859FB700C013CE;
 					};
 				};
 			};
@@ -233,14 +413,28 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC2781A12D859FB700C013CE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FCF5B1022D9EEFF600C40662 /* Products */;
+					ProjectRef = FCF5B1002D9EEFF600C40662 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FC27819F2D859FB700C013CE /* LupaTest */,
-				FC2781B52D859FB900C013CE /* LupaTestTests */,
-				FC2781BF2D859FB900C013CE /* LupaTestUITests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FCF5B1B92D9EF26C00C40662 /* Pods_LupaTest.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_LupaTest.framework;
+			remoteRef = FCF5B1B82D9EF26C00C40662 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FC27819E2D859FB700C013CE /* Resources */ = {
@@ -250,67 +444,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC2781B42D859FB900C013CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC2781BE2D859FB900C013CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1195B556D874707FDABB4961 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LupaTestTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1D0844473C347A23E2F4A737 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LupaTest-LupaTestUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7D051BAE0B2B53265FF37DE3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,6 +469,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8DCD1EA9699A439D606053F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LupaTest/Pods-LupaTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LupaTest/Pods-LupaTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LupaTest/Pods-LupaTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -343,44 +496,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC2781B22D859FB900C013CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC2781BC2D859FB900C013CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FC2781B82D859FB900C013CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FC27819F2D859FB700C013CE /* LupaTest */;
-			targetProxy = FC2781B72D859FB900C013CE /* PBXContainerItemProxy */;
-		};
-		FC2781C22D859FB900C013CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FC27819F2D859FB700C013CE /* LupaTest */;
-			targetProxy = FC2781C12D859FB900C013CE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FC2781CA2D859FB900C013CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2D96C3F94E2EFB34A6CB4F1 /* Pods-LupaTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WZ23MKN85G;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LupaTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -403,12 +531,14 @@
 		};
 		FC2781CB2D859FB900C013CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 526027BB97D03324ACF23DE0 /* Pods-LupaTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WZ23MKN85G;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LupaTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -548,75 +678,6 @@
 			};
 			name = Release;
 		};
-		FC2781CF2D859FB900C013CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WZ23MKN85G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stephenlol.LupaTestTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LupaTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LupaTest";
-			};
-			name = Debug;
-		};
-		FC2781D02D859FB900C013CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stephenlol.LupaTestTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LupaTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LupaTest";
-			};
-			name = Release;
-		};
-		FC2781D22D859FB900C013CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stephenlol.LupaTestUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = LupaTest;
-			};
-			name = Debug;
-		};
-		FC2781D32D859FB900C013CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stephenlol.LupaTestUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = LupaTest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -634,24 +695,6 @@
 			buildConfigurations = (
 				FC2781CA2D859FB900C013CE /* Debug */,
 				FC2781CB2D859FB900C013CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC2781CE2D859FB900C013CE /* Build configuration list for PBXNativeTarget "LupaTestTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC2781CF2D859FB900C013CE /* Debug */,
-				FC2781D02D859FB900C013CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC2781D12D859FB900C013CE /* Build configuration list for PBXNativeTarget "LupaTestUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC2781D22D859FB900C013CE /* Debug */,
-				FC2781D32D859FB900C013CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
