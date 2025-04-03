@@ -1,102 +1,16 @@
+// CameraViewController.swift
 import UIKit
 import AVFoundation
 import CoreLocation
 import AudioToolbox
 
-// MARK: - Models
-
-struct BoundingBox: Codable {
-    var Left: CGFloat
-    var Top: CGFloat
-    var Width: CGFloat
-    var Height: CGFloat
-}
-
-struct ProcessedResult: Codable {
-    var original_image_key: String
-    var people: [PersonFace]
-}
-
-struct PersonFace: Codable {
-    var face_id: String?
-    var bounding_box: BoundingBox
-    var status: String
-    var saved_face_image_key: String?
-}
-
-// New structs for SearchFacesByImage response (optional, if you want to decode)
-struct SearchFacesByImageResponse: Codable {
-    var SearchedFaceId: String
-    var FaceMatches: [FaceMatch]
-    var FaceModelVersion: String?
-}
-
-struct FaceMatch: Codable {
-    var Face: FaceDetail
-    var Similarity: Float
-}
-
-struct FaceDetail: Codable {
-    var BoundingBox: BoundingBox
-    var FaceId: String
-    var ExternalImageId: String?
-    var Confidence: Float
-    var ImageId: String?
-}
-
-// MARK: - Console Cell for Log Display
-
-class FaceCell: UITableViewCell {
-    static let identifier = "FaceCell"
+class CameraViewController: UIViewController {
     
-    let infoLabel = UILabel()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(infoLabel)
-        NSLayoutConstraint.activate([
-            infoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            infoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            infoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            infoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        ])
-        infoLabel.numberOfLines = 0
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    func configure(with text: String) {
-        infoLabel.text = text
-    }
-}
-/////////////////////////////////////////////
-// CameraViewController.swift
-/////////////////////////////////////////////
-
-class CameraViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, AVCapturePhotoCaptureDelegate, CLLocationManagerDelegate {
-    
-    var captureSession: AVCaptureSession?
-    var previewLayer: AVCaptureVideoPreviewLayer?
-    var photoOutput: AVCapturePhotoOutput?
-    
-    // Audio recorder property
-    var audioRecorder: AVAudioRecorder?
-    var lastAudioStartTime: Date?
-    
-    // Store the last captured image for scaling bounding boxes.
-    var lastCapturedImage: UIImage?
-    
-    // View to display bounding boxes on preview
+    // MARK: - UI Properties
     let boundingBoxView = UIView()
-    
     let overlayView = UIView()
     let searchBar = UISearchBar()
     let tableView = UITableView()
-    
-    // UI Console for log messages
     let consoleTextView: UITextView = {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
@@ -106,8 +20,6 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         tv.isEditable = false
         return tv
     }()
-    
-    // Button to toggle auto capture every 5 seconds
     let autoCaptureButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Start Auto Capture", for: .normal)
@@ -115,26 +27,31 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         return button
     }()
     
-    // Processed results array (not used in this example)
+    // MARK: - Capture and Processing Properties
+    var captureSession: AVCaptureSession?
+    var previewLayer: AVCaptureVideoPreviewLayer?
+    var photoOutput: AVCapturePhotoOutput?
+    var audioRecorder: AVAudioRecorder?
+    var lastAudioStartTime: Date?
+    var lastCapturedImage: UIImage?
     var processedResults: [ProcessedResult] = []
-    
     var captureTimer: Timer?
     var isAutoCaptureEnabled = false
     var lastUploadedObjectKey: String?
     
-    // Location Manager
+    // MARK: - Location
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     
-    
-    
-    // Rekognition collection ID (replace with your actual collection)
+    // MARK: - Rekognition & S3
     let collectionId = "lupa-test"
+    var s3Client: AWSS3Client! // Assumed to be injected or initialized elsewhere
+    var s3UploadClient: AWSS3Client! // Assumed to be injected or initialized elsewhere
     
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        
         setupAudioSession()
         setupCamera()
         setupBoundingBoxView()
@@ -144,21 +61,17 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         setupLocationManager()
     }
     
-    // MARK: - Audio Session and Recording
+    // MARK: - Audio Setup
     func setupAudioSession() {
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(.record, mode: .default, options: [])
             try session.setActive(true)
             session.requestRecordPermission { granted in
-                if granted {
-                    self.updateConsole(with: "Microphone permission granted.")
-                } else {
-                    self.updateConsole(with: "Microphone permission denied.")
-                }
+                self.updateConsole(with: granted ? "Microphone permission granted." : "Microphone permission denied.")
             }
         } catch {
-            self.updateConsole(with: "Audio session error: \(error.localizedDescription)")
+            updateConsole(with: "Audio session error: \(error.localizedDescription)")
         }
     }
     
@@ -172,14 +85,12 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         
         let audioFileName = "\(fileName).m4a"
         let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(audioFileName)
-        
         let settings: [String: Any] = [
             AVFormatIDKey: kAudioFormatMPEG4AAC,
             AVSampleRateKey: 44100,
             AVNumberOfChannelsKey: 2,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
-        
         do {
             audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
             audioRecorder?.record(forDuration: 10)
@@ -195,13 +106,9 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
             if let audioData = self.stopAudioRecording() {
                 let audioObjectKey = (self.lastUploadedObjectKey ?? "unknown").replacingOccurrences(of: ".jpg", with: ".mp3")
                 DispatchQueue.global(qos: .background).async {
-                    self.s3UploadClient.uploadObject(objectKey: audioObjectKey, data: audioData) { audioSuccess in
+                    self.s3UploadClient.uploadObject(objectKey: audioObjectKey, data: audioData) { success in
                         DispatchQueue.main.async {
-                            if audioSuccess {
-                                self.updateConsole(with: "Audio upload successful.")
-                            } else {
-                                self.updateConsole(with: "Audio upload failed.")
-                            }
+                            self.updateConsole(with: success ? "Audio upload successful." : "Audio upload failed.")
                         }
                     }
                 }
@@ -225,64 +132,30 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         return nil
     }
     
-    // MARK: - Console UI
-    func setupConsole() {
-        view.addSubview(consoleTextView)
-        NSLayoutConstraint.activate([
-            consoleTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            consoleTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            consoleTextView.bottomAnchor.constraint(equalTo: overlayView.topAnchor, constant: -10),
-            consoleTextView.heightAnchor.constraint(equalToConstant: 80)
-        ])
-        updateConsole(with: "Console initialized.")
-    }
-    
-    func updateConsole(with message: String) {
-        DispatchQueue.main.async {
-            self.consoleTextView.text.append("\n\(message)")
-            let range = NSMakeRange(self.consoleTextView.text.count - 1, 0)
-            self.consoleTextView.scrollRangeToVisible(range)
-        }
-    }
-    
-    // MARK: - Location Manager Setup
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    
-    // MARK: - Setup Camera and Preview
+    // MARK: - Camera Setup
     func setupCamera() {
         captureSession = AVCaptureSession()
         guard let captureSession = captureSession else { return }
         captureSession.sessionPreset = .photo
-        
         guard let camera = AVCaptureDevice.default(for: .video) else { return }
         do {
             let input = try AVCaptureDeviceInput(device: camera)
-            if captureSession.canAddInput(input) {
-                captureSession.addInput(input)
-            }
+            if captureSession.canAddInput(input) { captureSession.addInput(input) }
         } catch {
             updateConsole(with: "Camera error: \(error.localizedDescription)")
             return
         }
-        
         photoOutput = AVCapturePhotoOutput()
         if let photoOutput = photoOutput, captureSession.canAddOutput(photoOutput) {
             captureSession.addOutput(photoOutput)
         }
-        
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        guard let previewLayer = previewLayer else { return }
-        previewLayer.videoGravity = .resizeAspectFill
-        previewLayer.frame = view.bounds
-        view.layer.insertSublayer(previewLayer, at: 0)
-        
-        DispatchQueue.global(qos: .background).async {
-            captureSession.startRunning()
+        if let previewLayer = previewLayer {
+            previewLayer.videoGravity = .resizeAspectFill
+            previewLayer.frame = view.bounds
+            view.layer.insertSublayer(previewLayer, at: 0)
         }
+        DispatchQueue.global(qos: .background).async { captureSession.startRunning() }
     }
     
     func setupBoundingBoxView() {
@@ -291,7 +164,7 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         view.addSubview(boundingBoxView)
     }
     
-    // MARK: - Setup Overlay and Auto Capture Button
+    // MARK: - UI Setup
     func setupOverlay() {
         overlayView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -302,18 +175,15 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
             overlayView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             overlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
         ])
-        
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.delegate = self
         overlayView.addSubview(searchBar)
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(FaceCell.self, forCellReuseIdentifier: FaceCell.identifier)
         overlayView.addSubview(tableView)
-        
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: overlayView.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor),
@@ -336,7 +206,34 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         ])
     }
     
-    // MARK: - Auto Capture Control
+    func setupConsole() {
+        view.addSubview(consoleTextView)
+        NSLayoutConstraint.activate([
+            consoleTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            consoleTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            consoleTextView.bottomAnchor.constraint(equalTo: overlayView.topAnchor, constant: -10),
+            consoleTextView.heightAnchor.constraint(equalToConstant: 80)
+        ])
+        updateConsole(with: "Console initialized.")
+    }
+    
+    // MARK: - Location Setup
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    // MARK: - Console Logging
+    func updateConsole(with message: String) {
+        DispatchQueue.main.async {
+            self.consoleTextView.text.append("\n\(message)")
+            let range = NSMakeRange(self.consoleTextView.text.count - 1, 0)
+            self.consoleTextView.scrollRangeToVisible(range)
+        }
+    }
+    
+    // MARK: - Auto Capture
     @objc func toggleAutoCapture() {
         isAutoCaptureEnabled.toggle()
         if isAutoCaptureEnabled {
@@ -351,94 +248,46 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    // MARK: - Photo Capture with Audio and Rekognition
     @objc func capturePhoto() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd_HHmmss"
         let dateString = dateFormatter.string(from: Date())
-        var locationString = "unknown"
-        if let location = currentLocation {
-            locationString = "\(Int(location.coordinate.latitude))_\(Int(location.coordinate.longitude))"
-        }
+        let locationString = currentLocation.map { "\(Int($0.coordinate.latitude))_\(Int($0.coordinate.longitude))" } ?? "unknown"
         let objectKeyBase = "\(dateString)_\(locationString)"
-        // For IndexFaces we use the captured image bytes directly, so our local image key is used for logging.
-        self.lastUploadedObjectKey = objectKeyBase + ".jpg"
-        
+        lastUploadedObjectKey = objectKeyBase + ".jpg"
         if let lastStart = lastAudioStartTime, Date().timeIntervalSince(lastStart) < 10 {
             updateConsole(with: "Audio recording already in progress; skipping new start.")
         } else {
             startAudioRecording(with: objectKeyBase)
         }
-        
-        updateConsole(with: "Capturing photo and processing image as \(self.lastUploadedObjectKey!)...")
+        updateConsole(with: "Capturing photo and processing image as \(lastUploadedObjectKey!)...")
         photoOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
     
-    // MARK: - AVCapturePhotoCaptureDelegate
-    func photoOutput(_ output: AVCapturePhotoOutput,
-                     didFinishProcessingPhoto photo: AVCapturePhoto,
-                     error: Error?) {
-        if let error = error {
-            updateConsole(with: "Photo error: \(error.localizedDescription)")
-            return
-        }
-        guard let imageData = photo.fileDataRepresentation() else { return }
-        
-        // Store the captured image for scaling bounding boxes.
-        if let image = UIImage(data: imageData) {
-            self.lastCapturedImage = image
-        }
-        
-        // Clear previous bounding boxes.
-        self.boundingBoxView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-        
-        // Call IndexFaces using the captured image bytes.
-        self.callIndexFacesAndDrawBoxes()
-        
-        // (Optional) Check for S3 JSON result if using S3-based processing.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            let jsonKey = "results/\((self.lastUploadedObjectKey ?? "unknown").replacingOccurrences(of: ".jpg", with: ".json"))"
-            self.updateConsole(with: "Checking for JSON at key: \(jsonKey)")
-            self.s3Client.fetchObject(objectKey: jsonKey) { data in
-                if let data = data, let jsonString = String(data: data, encoding: .utf8) {
-                    self.updateConsole(with: "Raw JSON:\n\(jsonString)")
-                } else {
-                    self.updateConsole(with: "JSON does not exist in S3.")
-                }
-            }
-        }
-    }
-    
-    // MARK: - Call Rekognition IndexFaces and Draw Bounding Boxes
+    // MARK: - Rekognition Processing
     func callIndexFacesAndDrawBoxes() {
-        // Use the locally captured image.
-        guard let capturedImage = self.lastCapturedImage,
+        guard let capturedImage = lastCapturedImage,
               let imageData = capturedImage.jpegData(compressionQuality: 0.8) else {
             updateConsole(with: "No captured image available for Rekognition.")
             return
         }
         
-        // Build the request for IndexFaces.
-        // We'll send the image bytes (base64 encoded) in the "Bytes" field.
         let base64String = imageData.base64EncodedString()
         let requestBody: [String: Any] = [
             "CollectionId": collectionId,
-            "Image": [
-                "Bytes": base64String
-            ],
-            "ExternalImageId": self.lastUploadedObjectKey ?? "unknown",
+            "Image": ["Bytes": base64String],
+            "ExternalImageId": lastUploadedObjectKey ?? "unknown",
             "MaxFaces": 100,
             "QualityFilter": "AUTO",
             "DetectionAttributes": ["ALL"]
         ]
-        
         guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBody, options: []) else {
             updateConsole(with: "Error creating Rekognition request JSON.")
             return
         }
         
         let target = "RekognitionService.IndexFaces"
-        let endpoint = "https://rekognition.\(self.s3Client.region).amazonaws.com/"
+        let endpoint = "https://rekognition.\(s3Client.region).amazonaws.com/"
         guard let url = URL(string: endpoint) else {
             updateConsole(with: "Invalid Rekognition endpoint URL.")
             return
@@ -453,142 +302,143 @@ class CameraViewController: UIViewController, UITableViewDataSource, UITableView
         request.setValue(amzDate, forHTTPHeaderField: "X-Amz-Date")
         request.setValue(authorizationHeader, forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
-                print("Rekognition API error: \(error)")
                 DispatchQueue.main.async {
                     self.updateConsole(with: "Rekognition call failed: \(error.localizedDescription)")
                 }
                 return
             }
-            if let data = data {
-                do {
-                    // Print the raw response as text.
-                    if let rawResponse = String(data: data, encoding: .utf8) {
-                        DispatchQueue.main.async {
-                            self.updateConsole(with: "Raw Rekognition response:\n\(rawResponse)")
-                        }
-                    }
-                    
-                    // Convert response to dictionary.
-                    guard var responseDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                        DispatchQueue.main.async {
-                            self.updateConsole(with: "Unable to decode Rekognition response as dictionary.")
-                        }
+            guard let data = data else { return }
+            do {
+                if let rawResponse = String(data: data, encoding: .utf8) {
+                    DispatchQueue.main.async { self.updateConsole(with: "Raw Rekognition response:\n\(rawResponse)") }
+                }
+                guard let responseDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                    DispatchQueue.main.async { self.updateConsole(with: "Unable to decode Rekognition response as dictionary.") }
+                    return
+                }
+                DispatchQueue.main.async {
+                    var faceRecords: [[String: Any]] = []
+                    if let records = responseDict["FaceRecords"] as? [[String: Any]] {
+                        faceRecords = records
+                    } else if let singleRecord = responseDict["FaceRecords"] as? [String: Any] {
+                        faceRecords = [singleRecord]
+                    } else {
+                        self.updateConsole(with: "No FaceRecords found in response.")
                         return
                     }
-                    DispatchQueue.main.async {
-                        // Get the "FaceRecords" array from the response.
-                        var faceRecords: [[String: Any]] = []
-                        if let records = responseDict["FaceRecords"] as? [[String: Any]] {
-                            faceRecords = records
-                        } else if let singleRecord = responseDict["FaceRecords"] as? [String: Any] {
-                            faceRecords = [singleRecord]
-                        } else {
-                            self.updateConsole(with: "No FaceRecords found in response.")
-                            return
-                        }
-                        
-                        // Use the captured image size for scaling.
-                        let imageSize = capturedImage.size
-                        let previewSize = self.previewLayer?.bounds.size ?? CGSize.zero
-                        
-                        // Calculate scale and offsets based on .resizeAspectFill.
-                        let imageAspect = imageSize.width / imageSize.height
-                        let previewAspect = previewSize.width / previewSize.height
-                        var scale: CGFloat = 1.0
-                        var xOffset: CGFloat = 0
-                        var yOffset: CGFloat = 0
-                        
-                        if previewAspect > imageAspect {
-                            scale = previewSize.width / imageSize.width
-                            yOffset = (previewSize.height - imageSize.height * scale) / 2.0
-                        } else {
-                            scale = previewSize.height / imageSize.height
-                            xOffset = (previewSize.width - imageSize.width * scale) / 2.0
-                        }
-                        
-                        // Draw a bounding box and label for each face record.
-                        for record in faceRecords {
-                            if let face = record["Face"] as? [String: Any],
-                               let boundingBox = face["BoundingBox"] as? [String: Any],
-                               let leftNorm = boundingBox["Left"] as? CGFloat,
-                               let topNorm = boundingBox["Top"] as? CGFloat,
-                               let widthNorm = boundingBox["Width"] as? CGFloat,
-                               let heightNorm = boundingBox["Height"] as? CGFloat,
-                               let faceId = face["FaceId"] as? String {
-                                
-                                let x = leftNorm * imageSize.width
-                                let y = topNorm * imageSize.height
-                                let boxWidth = widthNorm * imageSize.width
-                                let boxHeight = heightNorm * imageSize.height
-                                
-                                let convertedRect = CGRect(x: x * scale + xOffset,
-                                                           y: y * scale + yOffset,
-                                                           width: boxWidth * scale,
-                                                           height: boxHeight * scale)
-                                
-                                let boxLayer = CAShapeLayer()
-                                boxLayer.frame = convertedRect
-                                boxLayer.borderColor = UIColor.blue.cgColor
-                                boxLayer.borderWidth = 2.0
-                                
-                                let textLayer = CATextLayer()
-                                textLayer.string = faceId
-                                textLayer.fontSize = 12
-                                textLayer.foregroundColor = UIColor.blue.cgColor
-                                textLayer.frame = CGRect(x: convertedRect.origin.x,
-                                                         y: convertedRect.origin.y - 16,
-                                                         width: 150,
-                                                         height: 16)
-                                textLayer.contentsScale = UIScreen.main.scale
-                                
-                                self.boundingBoxView.layer.addSublayer(boxLayer)
-                                self.boundingBoxView.layer.addSublayer(textLayer)
-                            }
+                    let imageSize = capturedImage.size
+                    let previewSize = self.previewLayer?.bounds.size ?? CGSize.zero
+                    let imageAspect = imageSize.width / imageSize.height
+                    let previewAspect = previewSize.width / previewSize.height
+                    var scale: CGFloat = 1.0, xOffset: CGFloat = 0, yOffset: CGFloat = 0
+                    if previewAspect > imageAspect {
+                        scale = previewSize.width / imageSize.width
+                        yOffset = (previewSize.height - imageSize.height * scale) / 2.0
+                    } else {
+                        scale = previewSize.height / imageSize.height
+                        xOffset = (previewSize.width - imageSize.width * scale) / 2.0
+                    }
+                    for record in faceRecords {
+                        if let face = record["Face"] as? [String: Any],
+                           let boundingBox = face["BoundingBox"] as? [String: Any],
+                           let leftNorm = boundingBox["Left"] as? CGFloat,
+                           let topNorm = boundingBox["Top"] as? CGFloat,
+                           let widthNorm = boundingBox["Width"] as? CGFloat,
+                           let heightNorm = boundingBox["Height"] as? CGFloat,
+                           let faceId = face["FaceId"] as? String {
+                            
+                            let x = leftNorm * imageSize.width
+                            let y = topNorm * imageSize.height
+                            let boxWidth = widthNorm * imageSize.width
+                            let boxHeight = heightNorm * imageSize.height
+                            let convertedRect = CGRect(x: x * scale + xOffset,
+                                                       y: y * scale + yOffset,
+                                                       width: boxWidth * scale,
+                                                       height: boxHeight * scale)
+                            
+                            let boxLayer = CAShapeLayer()
+                            boxLayer.frame = convertedRect
+                            boxLayer.borderColor = UIColor.blue.cgColor
+                            boxLayer.borderWidth = 2.0
+                            
+                            let textLayer = CATextLayer()
+                            textLayer.string = faceId
+                            textLayer.fontSize = 12
+                            textLayer.foregroundColor = UIColor.blue.cgColor
+                            textLayer.frame = CGRect(x: convertedRect.origin.x,
+                                                     y: convertedRect.origin.y - 16,
+                                                     width: 150,
+                                                     height: 16)
+                            textLayer.contentsScale = UIScreen.main.scale
+                            
+                            self.boundingBoxView.layer.addSublayer(boxLayer)
+                            self.boundingBoxView.layer.addSublayer(textLayer)
                         }
                     }
-                } catch {
-                    DispatchQueue.main.async {
-                        self.updateConsole(with: "Error decoding Rekognition response: \(error.localizedDescription)")
-                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.updateConsole(with: "Error decoding Rekognition response: \(error.localizedDescription)")
                 }
             }
         }.resume()
     }
-    
-    // MARK: - UITableViewDataSource Methods
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+}
+
+// MARK: - AVCapturePhotoCaptureDelegate
+extension CameraViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let error = error {
+            updateConsole(with: "Photo error: \(error.localizedDescription)")
+            return
+        }
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        if let image = UIImage(data: imageData) { lastCapturedImage = image }
+        boundingBoxView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        callIndexFacesAndDrawBoxes()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            let jsonKey = "results/\((self.lastUploadedObjectKey ?? "unknown").replacingOccurrences(of: ".jpg", with: ".json"))"
+            self.updateConsole(with: "Checking for JSON at key: \(jsonKey)")
+            self.s3Client.fetchObject(objectKey: jsonKey) { data in
+                if let data = data, let jsonString = String(data: data, encoding: .utf8) {
+                    self.updateConsole(with: "Raw JSON:\n\(jsonString)")
+                } else {
+                    self.updateConsole(with: "JSON does not exist in S3.")
+                }
+            }
+        }
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return processedResults.count
-    }
-    
+}
+
+// MARK: - UITableViewDataSource & UITableViewDelegate
+extension CameraViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int { return 1 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return processedResults.count }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FaceCell.identifier, for: indexPath) as! FaceCell
         let result = processedResults[indexPath.row]
-        let info = "Image: \(result.original_image_key) | People: \(result.people.count)"
-        cell.configure(with: info)
+        cell.configure(with: "Image: \(result.original_image_key) | People: \(result.people.count)")
         return cell
     }
-    
-    // MARK: - UITableViewDelegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    // MARK: - UISearchBarDelegate Methods
+}
+
+// MARK: - UISearchBarDelegate
+extension CameraViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         tableView.reloadData()
     }
-    
-    // MARK: - CLLocationManagerDelegate Methods
+}
+
+// MARK: - CLLocationManagerDelegate
+extension CameraViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last
     }
-    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         updateConsole(with: "Location error: \(error.localizedDescription)")
     }

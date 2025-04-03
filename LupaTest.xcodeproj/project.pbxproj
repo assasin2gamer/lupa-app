@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4E206FACFD3EA0F4876B9FD0 /* Pods_LupaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2852863DB53ADE516FC39343 /* Pods_LupaTest.framework */; };
+		6AB6E6F3A2CCEA0403D60DC4 /* Pods_LupaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD0F99B00BAECFBA5B26E5E /* Pods_LupaTestTests.framework */; };
+		D4B886E1FFEB996428834624 /* Pods_LupaTest_LupaTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6AA646C046242D6E313653 /* Pods_LupaTest_LupaTestUITests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FC2781B72D859FB900C013CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D6AA646C046242D6E313653 /* Pods_LupaTest_LupaTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LupaTest_LupaTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2852863DB53ADE516FC39343 /* Pods_LupaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LupaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD0F99B00BAECFBA5B26E5E /* Pods_LupaTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LupaTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2781A02D859FB700C013CE /* LupaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LupaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2781B62D859FB900C013CE /* LupaTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LupaTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2781C02D859FB900C013CE /* LupaTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LupaTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCF5AF5D2D9EEDDE00C40662 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E206FACFD3EA0F4876B9FD0 /* Pods_LupaTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AB6E6F3A2CCEA0403D60DC4 /* Pods_LupaTestTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,19 +91,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B886E1FFEB996428834624 /* Pods_LupaTest_LupaTestUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0A359E508347DC7A70736C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2852863DB53ADE516FC39343 /* Pods_LupaTest.framework */,
+				0D6AA646C046242D6E313653 /* Pods_LupaTest_LupaTestUITests.framework */,
+				8BD0F99B00BAECFBA5B26E5E /* Pods_LupaTestTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FC2781972D859FB700C013CE = {
 			isa = PBXGroup;
 			children = (
+				FCF5AF5D2D9EEDDE00C40662 /* Podfile */,
 				FC2781A22D859FB700C013CE /* LupaTest */,
 				FC2781B92D859FB900C013CE /* LupaTestTests */,
 				FC2781C32D859FB900C013CE /* LupaTestUITests */,
 				FC2781A12D859FB700C013CE /* Products */,
+				0F0A359E508347DC7A70736C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +137,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC2781C92D859FB900C013CE /* Build configuration list for PBXNativeTarget "LupaTest" */;
 			buildPhases = (
+				7D051BAE0B2B53265FF37DE3 /* [CP] Check Pods Manifest.lock */,
 				FC27819C2D859FB700C013CE /* Sources */,
 				FC27819D2D859FB700C013CE /* Frameworks */,
 				FC27819E2D859FB700C013CE /* Resources */,
@@ -124,8 +150,6 @@
 				FC2781A22D859FB700C013CE /* LupaTest */,
 			);
 			name = LupaTest;
-			packageProductDependencies = (
-			);
 			productName = LupaTest;
 			productReference = FC2781A02D859FB700C013CE /* LupaTest.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +158,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC2781CE2D859FB900C013CE /* Build configuration list for PBXNativeTarget "LupaTestTests" */;
 			buildPhases = (
+				1195B556D874707FDABB4961 /* [CP] Check Pods Manifest.lock */,
 				FC2781B22D859FB900C013CE /* Sources */,
 				FC2781B32D859FB900C013CE /* Frameworks */,
 				FC2781B42D859FB900C013CE /* Resources */,
@@ -147,8 +172,6 @@
 				FC2781B92D859FB900C013CE /* LupaTestTests */,
 			);
 			name = LupaTestTests;
-			packageProductDependencies = (
-			);
 			productName = LupaTestTests;
 			productReference = FC2781B62D859FB900C013CE /* LupaTestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,6 +180,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC2781D12D859FB900C013CE /* Build configuration list for PBXNativeTarget "LupaTestUITests" */;
 			buildPhases = (
+				1D0844473C347A23E2F4A737 /* [CP] Check Pods Manifest.lock */,
 				FC2781BC2D859FB900C013CE /* Sources */,
 				FC2781BD2D859FB900C013CE /* Frameworks */,
 				FC2781BE2D859FB900C013CE /* Resources */,
@@ -170,8 +194,6 @@
 				FC2781C32D859FB900C013CE /* LupaTestUITests */,
 			);
 			name = LupaTestUITests;
-			packageProductDependencies = (
-			);
 			productName = LupaTestUITests;
 			productReference = FC2781C02D859FB900C013CE /* LupaTestUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -243,6 +265,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1195B556D874707FDABB4961 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LupaTestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D0844473C347A23E2F4A737 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LupaTest-LupaTestUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D051BAE0B2B53265FF37DE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LupaTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FC27819C2D859FB700C013CE /* Sources */ = {

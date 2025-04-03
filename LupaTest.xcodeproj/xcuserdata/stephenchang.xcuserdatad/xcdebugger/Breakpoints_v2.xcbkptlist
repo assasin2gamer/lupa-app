@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "A3C06C3D-133A-4928-B157-C198C99D9467"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LupaTest/Model/ConsoleModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "ConsoleModel"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - ee8c93a8fdb840ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of LupaTest.ConsoleModel.text : Swift.String"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stephenchang/Desktop/lupa-app/LupaTest/Model/ConsoleModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - b4eb9c7612ed085"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.text.getter : Swift.String"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stephenchang/Desktop/lupa-app/LupaTest/Model/ConsoleModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - a8a7ddc5f623e199"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.text.setter : Swift.String"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stephenchang/Desktop/lupa-app/LupaTest/Model/ConsoleModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - 546751c5531b0d88"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.text.modify : Swift.String"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stephenchang/Desktop/lupa-app/LupaTest/Model/ConsoleModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - 8af6d5a529f1a469"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.text.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - 1e39a0c7ef5444e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.$text.getter : Combine.Published&lt;Swift.String&gt;.Publisher"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stephenchang/Desktop/lupa-app/LupaTest/Model/ConsoleModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - 617560ba72b909fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.$text.setter : Combine.Published&lt;Swift.String&gt;.Publisher"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stephenchang/Desktop/lupa-app/LupaTest/Model/ConsoleModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - e44dca1cac698ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.$text.modify : Combine.Published&lt;Swift.String&gt;.Publisher"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stephenchang/Desktop/lupa-app/LupaTest/Model/ConsoleModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8">
+               </Location>
+               <Location
+                  uuid = "8039C64E-EBB8-4FB2-9B4B-D32D06281BCD - b22221e101c7b494"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LupaTest.ConsoleModel.$text.modify : Combine.Published&lt;Swift.String&gt;.Publisher with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "LupaTest.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
